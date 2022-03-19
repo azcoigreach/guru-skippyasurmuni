@@ -638,26 +638,26 @@ class GuruSkippyasurmuni(IStrategy):
             # Create empty entry for this pair {DATESTAMP}
             self.custom_info[pair] = ['', 0] 
 
-        count = self.custom_info[pair][self.COUNT]
+        # count = self.custom_info[pair][self.COUNT]
 
-        dataframe['buy_1'] = 0
+        # dataframe['buy_1'] = 0
 
-        # # iterate through dataframe, create buys and sells
-        row = 0
-        last_row = dataframe.tail(1).index.item()
-        while (row <= last_row):
+        # # # iterate through dataframe, create buys and sells
+        # row = 0
+        # last_row = dataframe.tail(1).index.item()
+        # while (row <= last_row):
                         
-            if(count == 0):
-                dataframe['buy'].iloc[row] = 1
-            if(count > 0): 
-                dataframe['buy_1'].iloc[row] = 1
-            else:
-                count += 1
+        #     if(count == 0):
+        #         dataframe['buy'].iloc[row] = 1
+        #     if(count > 0): 
+        #         dataframe['buy_1'].iloc[row] = 1
+        #     else:
+        #         count += 1
             
-            if(row == 0):
-                self.custom_info[pair][self.COUNT] = count
+        #     if(row == 0):
+        #         self.custom_info[pair][self.COUNT] = count
 
-            row += 1
+        #     row += 1
 
         return dataframe
 
