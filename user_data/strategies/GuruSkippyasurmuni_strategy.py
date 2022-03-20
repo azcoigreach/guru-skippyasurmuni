@@ -454,7 +454,7 @@ class GuruSkippyasurmuni(IStrategy):
         
         # Minimum 1% profit before Sell trigger
         if current_profit < 0.01:
-                return False
+            return False
 
         return True
     
@@ -462,11 +462,11 @@ class GuruSkippyasurmuni(IStrategy):
                             proposed_stake: float, min_stake: float, max_stake: float,
                             **kwargs) -> float:
             
-            # Split total stake amounst the bots and the max trades per bot
-            custom_stake = self.wallets.get_total_stake_amount() / self.config['max_open_trades'] / (self.max_entry_position_adjustment + 1)
-            if custom_stake >= min_stake:
-                return custom_stake
-
+        # Split total stake amounst the bots and the max trades per bot
+        custom_stake = self.wallets.get_total_stake_amount() / self.config['max_open_trades'] / (self.max_entry_position_adjustment + 1)
+        if custom_stake >= min_stake:
+            return custom_stake
+        
         return proposed_stake
 
     # Skippy's has finally figured out how to stake positions
