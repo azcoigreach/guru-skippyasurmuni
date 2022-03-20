@@ -1,5 +1,5 @@
 {
-    "max_open_trades": 10,
+    "max_open_trades": 5,
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
     "tradable_balance_ratio": 0.90,
@@ -84,13 +84,13 @@
         {
             "method": "RangeStabilityFilter",
             "lookback_days": 10,
-            "min_rate_of_change": 0.2,
+            "min_rate_of_change": 0.185,
             "refresh_period": 1440
         },
         {
             "method": "VolatilityFilter",
             "lookback_days": 10,
-            "min_volatility": 0.100,
+            "min_volatility": 0.090,
             "max_volatility": 0.550,
             "refresh_period": 86400
         }
@@ -126,7 +126,7 @@
         "username": "freqtrade",
         "password": "freqtrade"
     },
-    "bot_name": "freqtrade",
+    "bot_name": "GuruSkippyasurmuni",
     "initial_state": "running",
     "forcebuy_enable": true,
     "internals": {

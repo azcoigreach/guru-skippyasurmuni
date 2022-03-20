@@ -365,7 +365,6 @@ class GuruSkippyasurmuni(IStrategy):
     # Sell signal
     use_sell_signal = True
     sell_profit_only = True
-    # sell_profit_offset = 0.01
     ignore_roi_if_buy_signal = False
     
     # Optimal timeframe for the strategy
@@ -376,6 +375,7 @@ class GuruSkippyasurmuni(IStrategy):
     # DCA config
     position_adjustment_enable = True
     max_entry_position_adjustment = 24
+    dca_multiplier = 0.15
 
     # Protections
     @property
@@ -444,7 +444,7 @@ class GuruSkippyasurmuni(IStrategy):
 
         if not pair in self.custom_info:
             # Create empty entry for this pair {DATESTAMP}
-            self.custom_info[pair] = ['', 0] 
+            self.custom_info[pair] = [''] 
 
         return dataframe
 
@@ -466,6 +466,8 @@ class GuruSkippyasurmuni(IStrategy):
         custom_stake = self.wallets.get_total_stake_amount() / self.config['max_open_trades'] / (self.max_entry_position_adjustment + 1)
         if custom_stake >= min_stake:
             return custom_stake
+        elif custom_stake < min_stake:
+            return min_stake
         else:
             return proposed_stake
 
@@ -491,9 +493,13 @@ class GuruSkippyasurmuni(IStrategy):
             # If last candle had 'buy' indicator adjust stake by original stake_amount
             if last_candle['buy'] > 0:
                 filled_buys = trade.select_filled_orders('buy')
+                count_of_buys = trade.nr_of_successful_buys
                 try:
-                    stake_amount = filled_buys[0].cost
-                    return stake_amount
+                    stake_amount = (count_of_buys * self.dca_multiplier) * filled_buys[0].cost 
+                    if stake_amount < min_stake: 
+                        return min_stake
+                    else:
+                        return stake_amount
                 except Exception as exception:
                     return None
 
