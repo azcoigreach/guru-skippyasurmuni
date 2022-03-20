@@ -1,5 +1,5 @@
 {
-    "max_open_trades": 50,
+    "max_open_trades": 10,
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
     "tradable_balance_ratio": 0.90,
@@ -113,7 +113,7 @@
     "telegram": {
         "enabled": false,
         "token": "",
-        "chat_id": "1810858479"
+        "chat_id": ""
     },
     "api_server": {
         "enabled": true,

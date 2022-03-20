@@ -54,177 +54,8 @@ from pandas.core.common import SettingWithCopyWarning
 warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 from random import shuffle
 
-# Initiate genes splicing --> Source: MaBlue GodStrNew --> Target: Guru Skippyasurmuni strategy.
+# Initiate genes splicing --> Source: MaBlue GodStrNew strategy --> Target: Guru Skippyasurmuni strategy.
 
-#  TODO: this gene is removed 'MAVP' cuz or error on periods
-all_god_genes = {
-    'Overlap Studies': {
-        'BBANDS-0',             # Bollinger Bands
-        'BBANDS-1',             # Bollinger Bands
-        'BBANDS-2',             # Bollinger Bands
-        'DEMA',                 # Double Exponential Moving Average
-        'EMA',                  # Exponential Moving Average
-        'HT_TRENDLINE',         # Hilbert Transform - Instantaneous Trendline
-        'KAMA',                 # Kaufman Adaptive Moving Average
-        'MA',                   # Moving average
-        'MAMA-0',               # MESA Adaptive Moving Average
-        'MAMA-1',               # MESA Adaptive Moving Average
-        # TODO: Fix this
-        # 'MAVP',               # Moving average with variable period
-        'MIDPOINT',             # MidPoint over period
-        'MIDPRICE',             # Midpoint Price over period
-        'SAR',                  # Parabolic SAR
-        'SAREXT',               # Parabolic SAR - Extended
-        'SMA',                  # Simple Moving Average
-        'T3',                   # Triple Exponential Moving Average (T3)
-        'TEMA',                 # Triple Exponential Moving Average
-        'TRIMA',                # Triangular Moving Average
-        'WMA',                  # Weighted Moving Average
-    },
-    'Momentum Indicators': {
-        'ADX',                  # Average Directional Movement Index
-        'ADXR',                 # Average Directional Movement Index Rating
-        'APO',                  # Absolute Price Oscillator
-        'AROON-0',              # Aroon
-        'AROON-1',              # Aroon
-        'AROONOSC',             # Aroon Oscillator
-        'BOP',                  # Balance Of Power
-        'CCI',                  # Commodity Channel Index
-        'CMO',                  # Chande Momentum Oscillator
-        'DX',                   # Directional Movement Index
-        'MACD-0',               # Moving Average Convergence/Divergence
-        'MACD-1',               # Moving Average Convergence/Divergence
-        'MACD-2',               # Moving Average Convergence/Divergence
-        'MACDEXT-0',            # MACD with controllable MA type
-        'MACDEXT-1',            # MACD with controllable MA type
-        'MACDEXT-2',            # MACD with controllable MA type
-        'MACDFIX-0',            # Moving Average Convergence/Divergence Fix 12/26
-        'MACDFIX-1',            # Moving Average Convergence/Divergence Fix 12/26
-        'MACDFIX-2',            # Moving Average Convergence/Divergence Fix 12/26
-        'MFI',                  # Money Flow Index
-        'MINUS_DI',             # Minus Directional Indicator
-        'MINUS_DM',             # Minus Directional Movement
-        'MOM',                  # Momentum
-        'PLUS_DI',              # Plus Directional Indicator
-        'PLUS_DM',              # Plus Directional Movement
-        'PPO',                  # Percentage Price Oscillator
-        'ROC',                  # Rate of change : ((price/prevPrice)-1)*100
-        'ROCP',                 # Rate of change Percentage: (price-prevPrice)/prevPrice
-        'ROCR',                 # Rate of change ratio: (price/prevPrice)
-        'ROCR100',              # Rate of change ratio 100 scale: (price/prevPrice)*100
-        'RSI',                  # Relative Strength Index
-        'STOCH-0',              # Stochastic
-        'STOCH-1',              # Stochastic
-        'STOCHF-0',             # Stochastic Fast
-        'STOCHF-1',             # Stochastic Fast
-        'STOCHRSI-0',           # Stochastic Relative Strength Index
-        'STOCHRSI-1',           # Stochastic Relative Strength Index
-        'TRIX',                 # 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
-        'ULTOSC',               # Ultimate Oscillator
-        'WILLR',                # Williams' %R
-    },
-    'Volume Indicators': {
-        'AD',                   # Chaikin A/D Line
-        'ADOSC',                # Chaikin A/D Oscillator
-        'OBV',                  # On Balance Volume
-    },
-    'Volatility Indicators': {
-        'ATR',                  # Average True Range
-        'NATR',                 # Normalized Average True Range
-        'TRANGE',               # True Range
-    },
-    'Price Transform': {
-        'AVGPRICE',             # Average Price
-        'MEDPRICE',             # Median Price
-        'TYPPRICE',             # Typical Price
-        'WCLPRICE',             # Weighted Close Price
-    },
-    'Cycle Indicators': {
-        'HT_DCPERIOD',          # Hilbert Transform - Dominant Cycle Period
-        'HT_DCPHASE',           # Hilbert Transform - Dominant Cycle Phase
-        'HT_PHASOR-0',          # Hilbert Transform - Phasor Components
-        'HT_PHASOR-1',          # Hilbert Transform - Phasor Components
-        'HT_SINE-0',            # Hilbert Transform - SineWave
-        'HT_SINE-1',            # Hilbert Transform - SineWave
-        'HT_TRENDMODE',         # Hilbert Transform - Trend vs Cycle Mode
-    },
-    'Pattern Recognition': {
-        'CDL2CROWS',            # Two Crows
-        'CDL3BLACKCROWS',       # Three Black Crows
-        'CDL3INSIDE',           # Three Inside Up/Down
-        'CDL3LINESTRIKE',       # Three-Line Strike
-        'CDL3OUTSIDE',          # Three Outside Up/Down
-        'CDL3STARSINSOUTH',     # Three Stars In The South
-        'CDL3WHITESOLDIERS',    # Three Advancing White Soldiers
-        'CDLABANDONEDBABY',     # Abandoned Baby
-        'CDLADVANCEBLOCK',      # Advance Block
-        'CDLBELTHOLD',          # Belt-hold
-        'CDLBREAKAWAY',         # Breakaway
-        'CDLCLOSINGMARUBOZU',   # Closing Marubozu
-        'CDLCONCEALBABYSWALL',  # Concealing Baby Swallow
-        'CDLCOUNTERATTACK',     # Counterattack
-        'CDLDARKCLOUDCOVER',    # Dark Cloud Cover
-        'CDLDOJI',              # Doji
-        'CDLDOJISTAR',          # Doji Star
-        'CDLDRAGONFLYDOJI',     # Dragonfly Doji
-        'CDLENGULFING',         # Engulfing Pattern
-        'CDLEVENINGDOJISTAR',   # Evening Doji Star
-        'CDLEVENINGSTAR',       # Evening Star
-        'CDLGAPSIDESIDEWHITE',  # Up/Down-gap side-by-side white lines
-        'CDLGRAVESTONEDOJI',    # Gravestone Doji
-        'CDLHAMMER',            # Hammer
-        'CDLHANGINGMAN',        # Hanging Man
-        'CDLHARAMI',            # Harami Pattern
-        'CDLHARAMICROSS',       # Harami Cross Pattern
-        'CDLHIGHWAVE',          # High-Wave Candle
-        'CDLHIKKAKE',           # Hikkake Pattern
-        'CDLHIKKAKEMOD',        # Modified Hikkake Pattern
-        'CDLHOMINGPIGEON',      # Homing Pigeon
-        'CDLIDENTICAL3CROWS',   # Identical Three Crows
-        'CDLINNECK',            # In-Neck Pattern
-        'CDLINVERTEDHAMMER',    # Inverted Hammer
-        'CDLKICKING',           # Kicking
-        'CDLKICKINGBYLENGTH',   # Kicking - bull/bear determined by the longer marubozu
-        'CDLLADDERBOTTOM',      # Ladder Bottom
-        'CDLLONGLEGGEDDOJI',    # Long Legged Doji
-        'CDLLONGLINE',          # Long Line Candle
-        'CDLMARUBOZU',          # Marubozu
-        'CDLMATCHINGLOW',       # Matching Low
-        'CDLMATHOLD',           # Mat Hold
-        'CDLMORNINGDOJISTAR',   # Morning Doji Star
-        'CDLMORNINGSTAR',       # Morning Star
-        'CDLONNECK',            # On-Neck Pattern
-        'CDLPIERCING',          # Piercing Pattern
-        'CDLRICKSHAWMAN',       # Rickshaw Man
-        'CDLRISEFALL3METHODS',  # Rising/Falling Three Methods
-        'CDLSEPARATINGLINES',   # Separating Lines
-        'CDLSHOOTINGSTAR',      # Shooting Star
-        'CDLSHORTLINE',         # Short Line Candle
-        'CDLSPINNINGTOP',       # Spinning Top
-        'CDLSTALLEDPATTERN',    # Stalled Pattern
-        'CDLSTICKSANDWICH',     # Stick Sandwich
-        'CDLTAKURI',            # Takuri (Dragonfly Doji with very long lower shadow)
-        'CDLTASUKIGAP',         # Tasuki Gap
-        'CDLTHRUSTING',         # Thrusting Pattern
-        'CDLTRISTAR',           # Tristar Pattern
-        'CDLUNIQUE3RIVER',      # Unique 3 River
-        'CDLUPSIDEGAP2CROWS',   # Upside Gap Two Crows
-        'CDLXSIDEGAP3METHODS',  # Upside/Downside Gap Three Methods
-
-    },
-    'Statistic Functions': {
-        'BETA',                 # Beta
-        'CORREL',               # Pearson's Correlation Coefficient (r)
-        'LINEARREG',            # Linear Regression
-        'LINEARREG_ANGLE',      # Linear Regression Angle
-        'LINEARREG_INTERCEPT',  # Linear Regression Intercept
-        'LINEARREG_SLOPE',      # Linear Regression Slope
-        'STDDEV',               # Standard Deviation
-        'TSF',                  # Time Series Forecast
-        'VAR',                  # Variance
-    }
-
-}
 god_genes = set()
 ########################### SETTINGS ##############################
 # RSI and an Aroon Oscillator are the only two metrics you need to catch the highs and lows
@@ -233,14 +64,6 @@ god_genes = {
     'RSI',                  # Relative Strength Index
     'AROONOSC',             # Aroon Oscillator
    }
-# god_genes |= all_god_genes['Overlap Studies']
-# god_genes |= all_god_genes['Momentum Indicators']
-# god_genes |= all_god_genes['Volume Indicators']
-# god_genes |= all_god_genes['Volatility Indicators']
-# god_genes |= all_god_genes['Price Transform']
-# god_genes |= all_god_genes['Cycle Indicators']
-# god_genes |= all_god_genes['Pattern Recognition']
-# god_genes |= all_god_genes['Statistic Functions']
 
 timeperiods = [5, 6, 12, 15, 50, 55, 100, 110]
 operators = [
@@ -257,16 +80,12 @@ operators = [
     "/>R",  # Normalized indicator devided to cross indicator, bigger than real number
     "/=R",  # Normalized indicator devided to cross indicator, equal with real number
     "/<R",  # Normalized indicator devided to cross indicator, smaller than real number
-    "UT",  # Indicator, is in UpTrend status
-    "DT",  # Indicator, is in DownTrend status
-    "OT",  # Indicator, is in Off trend status(RANGE)
-    "CUT",  # Indicator, Entered to UpTrend status
-    "CDT",  # Indicator, Entered to DownTrend status
-    "COT"  # Indicator, Entered to Off trend status(RANGE)
 ]
+
 # number of candles to check up,don,off trend.
 TREND_CHECK_CANDLES = 4
 DECIMALS = 3
+
 ########################### END SETTINGS ##########################
 # DATAFRAME = DataFrame()
 
@@ -280,7 +99,7 @@ for god_gene in god_genes:
 
 # Let give somethings to CatagoricalParam to Play with them
 # When just one thing is inside catagorical lists
-# TODO: its Not True Way :)
+# TODO: its Not True Way :) <-- But it's good enough
 if len(god_genes) == 1:
     god_genes = god_genes*2
 if len(timeperiods) == 1:
@@ -554,17 +373,6 @@ class GuruSkippyasurmuni(IStrategy):
     # timeframe = '1m'
     process_only_new_candles = True
 
-    plot_config = {
-        'subplots': {
-            "buy_1": {
-                'buy_1': {'color': 'blue'}
-            },
-            "sell_1": {
-                'sell_1': {'color': 'orange'}
-            },
-        }
-    }
-
     # DCA config
     position_adjustment_enable = True
     max_entry_position_adjustment = 24
@@ -638,27 +446,6 @@ class GuruSkippyasurmuni(IStrategy):
             # Create empty entry for this pair {DATESTAMP}
             self.custom_info[pair] = ['', 0] 
 
-        # count = self.custom_info[pair][self.COUNT]
-
-        # dataframe['buy_1'] = 0
-
-        # # # iterate through dataframe, create buys and sells
-        # row = 0
-        # last_row = dataframe.tail(1).index.item()
-        # while (row <= last_row):
-                        
-        #     if(count == 0):
-        #         dataframe['buy'].iloc[row] = 1
-        #     if(count > 0): 
-        #         dataframe['buy_1'].iloc[row] = 1
-        #     else:
-        #         count += 1
-            
-        #     if(row == 0):
-        #         self.custom_info[pair][self.COUNT] = count
-
-        #     row += 1
-
         return dataframe
 
     def confirm_trade_exit(self, pair: str, trade: Trade, order_type: str, amount: float,
@@ -674,7 +461,7 @@ class GuruSkippyasurmuni(IStrategy):
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
                             proposed_stake: float, min_stake: float, max_stake: float,
                             **kwargs) -> float:
-        return proposed_stake
+        return self.wallets.get_total_stake_amount() / self.config['max_open_trades'] / (self.max_entry_position_adjustment + 1)
 
     # Skippy's has finally figured out how to stake positions
     def adjust_trade_position(self, trade: Trade, current_time: datetime,
