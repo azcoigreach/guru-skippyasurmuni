@@ -471,7 +471,8 @@ class GuruSkippyasurmuni(IStrategy):
         else:
             return proposed_stake
 
-    # Skippy's has finally figured out how to stake positions
+    # Skippy's has finally figured out how to stake positions.
+    # You would think this is less difficult than forming a wormhole. You would be wrong..
     def adjust_trade_position(self, trade: Trade, current_time: datetime,
                               current_rate: float, current_profit: float, min_stake: float,
                               max_stake: float, **kwargs):
@@ -495,7 +496,7 @@ class GuruSkippyasurmuni(IStrategy):
                 filled_buys = trade.select_filled_orders('buy')
                 count_of_buys = trade.nr_of_successful_buys
                 try:
-                    stake_amount = (count_of_buys * self.dca_multiplier) * filled_buys[0].cost 
+                    stake_amount = ((count_of_buys * self.dca_multiplier) + 1) * filled_buys[0].cost 
                     if stake_amount < min_stake: 
                         return min_stake
                     else:
