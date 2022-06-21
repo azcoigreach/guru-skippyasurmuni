@@ -2,14 +2,14 @@
     "max_open_trades": 5,
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
-    "tradable_balance_ratio": 0.90,
+    "tradable_balance_ratio": 0.95,
     "fiat_display_currency": "USD",
     "dry_run": true,
     "dry_run_wallet": 7500,
     "cancel_open_orders_on_exit": false,
     "unfilledtimeout": {
-        "buy": 30,
-        "sell": 180,
+        "buy": 300,
+        "sell": 900,
         "unit": "seconds"
     },
     "ignore_buying_expired_candle_after": 300,
@@ -74,7 +74,7 @@
             "lookback_timeframe": "1h",
             "lookback_period": 72
         },
-        {"method": "AgeFilter", "min_days_listed": 15},
+        {"method": "AgeFilter", "min_days_listed": 60},
         {
             "method": "PerformanceFilter",
             "minutes": 1440  // rolling 24h
@@ -84,13 +84,13 @@
         {
             "method": "RangeStabilityFilter",
             "lookback_days": 10,
-            "min_rate_of_change": 0.185,
+            "min_rate_of_change": 0.165,
             "refresh_period": 1440
         },
         {
             "method": "VolatilityFilter",
             "lookback_days": 10,
-            "min_volatility": 0.090,
+            "min_volatility": 0.085,
             "max_volatility": 0.550,
             "refresh_period": 86400
         }

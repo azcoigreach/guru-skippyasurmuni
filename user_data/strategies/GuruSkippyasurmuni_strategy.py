@@ -53,7 +53,7 @@ import warnings
 from pandas.core.common import SettingWithCopyWarning
 warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 from random import shuffle
-
+import logging
 # Initiate genes splicing --> Source: MaBlue GodStrNew strategy --> Target: Guru Skippyasurmuni strategy.
 
 god_genes = set()
@@ -311,7 +311,7 @@ class GuruSkippyasurmuni(IStrategy):
     INTERFACE_VERSION = 2
 
     # Variables
-    DATESTAMP = 0    
+    DATESTAMP = 0
     COUNT = 0
     custom_info = { }
 
@@ -328,7 +328,7 @@ class GuruSkippyasurmuni(IStrategy):
         "buy_operator1": "<R",
         "buy_operator2": "=R",
         "buy_real_num0": 0.35,
-        "buy_real_num1": 0.30,
+        "buy_real_num1": 0.10,
         "buy_real_num2": 0,
     }
 
@@ -344,9 +344,9 @@ class GuruSkippyasurmuni(IStrategy):
         "sell_operator1": ">R",
         "sell_operator2": "=R",
         "sell_real_num0": 0.65,
-        "sell_real_num1": 0.9,
+        "sell_real_num1": 0.90,
         "sell_real_num2": 1.0,
-    }    
+    }
 
     # ROI table:
     minimal_roi = {
@@ -373,9 +373,10 @@ class GuruSkippyasurmuni(IStrategy):
     process_only_new_candles = True
 
     # DCA config
+    # Initial purchase + max_entry_position_adjustment
     position_adjustment_enable = True
-    max_entry_position_adjustment = 24
-    dca_multiplier = 0.15
+    max_entry_position_adjustment = 4
+    dca_multiplier = 0.5
 
     # Protections
     @property
@@ -383,7 +384,7 @@ class GuruSkippyasurmuni(IStrategy):
         return [
             {
             "method": "CooldownPeriod",
-            "stop_duration_candles": 3
+            "stop_duration_candles": 12
             }
         ]
 
@@ -449,13 +450,12 @@ class GuruSkippyasurmuni(IStrategy):
         return dataframe
 
     def confirm_trade_exit(self, pair: str, trade: Trade, order_type: str, amount: float,
-                           rate: float, time_in_force: str, sell_reason: str, current_profit: float,
-                           **kwargs) -> bool:
-        
-        # Minimum 1% profit before Sell trigger
-        if current_profit < 0.01:
-            return False
-
+                           rate: float, time_in_force: str, sell_reason: str,
+                           current_time: datetime, **kwargs) -> bool:
+        # We've got some ground to cover to get to Crypto Millionaire.  Set that bar high.
+        # Minimum return.
+        if sell_reason == 'sell_signal' and trade.calc_profit_ratio(rate) < 0.055:
+               return False
         return True
     
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
@@ -488,7 +488,8 @@ class GuruSkippyasurmuni(IStrategy):
             self.custom_info[trade.pair][self.DATESTAMP] = last_candle['date']
 
             # If current total profit is greater than value don't adjust.
-            if current_profit > -0.01:
+            # Skippy adjusted this value to be really deep due to the volitity in the market.
+            if current_profit > -0.105:
                 return None
 
             # If last candle had 'buy' indicator adjust stake by original stake_amount
