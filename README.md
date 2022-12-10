@@ -17,3 +17,17 @@ RSI and Aroon Oscillator indicators to populate signals. Coupled with a high cou
 This version of Skippy's sub-mind relies heavily on the freqtrade strategy codebase GodStra written by [MaBlue on github](https://github.com/mablue).  Skippy's god-like powers come from the god-genes that MaBlue created.  Allowing Skippy to be easily hyper-opted (* certain conditions apply).  
 
 Some help from PerkMeister on the [freqtrade.io Discord](https://discord.gg/kHaGH3wzHy)
+
+## Installation
+
+```git clone https://github.com/azcoigreach/guru-skippyasurmuni.git```
+
+```cd guru-skippyasurmuni```
+
+Edit the `user_data/guru-skippyasurmuni_config.json` and `user_data/strategies/GuruSkippyasurmuni_strategy.py` files to your needs. 
+
+## Usage
+
+```docker-compose up -d --build```
+
+```docker-compose logs -f```
