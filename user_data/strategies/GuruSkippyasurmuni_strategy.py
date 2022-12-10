@@ -49,9 +49,9 @@ from freqtrade.persistence import Trade
 from freqtrade.strategy import stoploss_from_open, merge_informative_pair, DecimalParameter, IntParameter, CategoricalParameter
 import technical.indicators as ftt
 from freqtrade.exchange import timeframe_to_prev_date
-import warnings
-from pandas.core.common import SettingWithCopyWarning
-warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
+# import warnings
+# from pandas.core.common import SettingWithCopyWarning
+# warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 from random import shuffle
 import logging
 # Initiate genes splicing --> Source: MaBlue GodStrNew strategy --> Target: Guru Skippyasurmuni strategy.
@@ -354,7 +354,7 @@ class GuruSkippyasurmuni(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -1.0
+    stoploss = -0.35 
 
     # Trailing stop:
     trailing_stop = False
@@ -364,8 +364,8 @@ class GuruSkippyasurmuni(IStrategy):
 
     # Sell signal
     use_sell_signal = True
-    sell_profit_only = True
-    ignore_roi_if_buy_signal = False
+    exit_profit_only = True
+    ignore_roi_if_entry_signal = False
     
     # Optimal timeframe for the strategy
     timeframe = '5m'
@@ -489,7 +489,7 @@ class GuruSkippyasurmuni(IStrategy):
 
             # If current total profit is greater than value don't adjust.
             # Skippy adjusted this value to be really deep due to the volitity in the market.
-            if current_profit > -0.105:
+            if current_profit > -0.065:
                 return None
 
             # If last candle had 'buy' indicator adjust stake by original stake_amount
@@ -507,7 +507,7 @@ class GuruSkippyasurmuni(IStrategy):
 
         return None
     
-    def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         conditions = list()
 
         # Buy Condition 0
@@ -560,7 +560,7 @@ class GuruSkippyasurmuni(IStrategy):
 
         return dataframe
 
-    def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         conditions = list()
         
         # Sell Condition 0
