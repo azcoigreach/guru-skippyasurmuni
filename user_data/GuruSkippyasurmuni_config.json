@@ -8,8 +8,8 @@
     "dry_run_wallet": 7500,
     "cancel_open_orders_on_exit": false,
     "unfilledtimeout": {
-        "buy": 300,
-        "sell": 900,
+        "entry": 300,
+        "exit": 900,
         "unit": "seconds"
     },
     "ignore_buying_expired_candle_after": 300,
@@ -27,7 +27,7 @@
     "exit_pricing": {
         "price_side": "bid",
         "use_order_book": true,
-        "order_book_min": 1,
+        "order_book_top": 1,
         "order_book_max": 1
     },
     "exchange": {

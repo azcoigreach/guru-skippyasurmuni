@@ -363,7 +363,7 @@ class GuruSkippyasurmuni(IStrategy):
     trailing_only_offset_is_reached = True
 
     # Sell signal
-    use_sell_signal = True
+    use_exit_signal = True
     exit_profit_only = True
     ignore_roi_if_entry_signal = False
     
