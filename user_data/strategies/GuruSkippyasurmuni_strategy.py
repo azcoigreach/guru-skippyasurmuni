@@ -450,11 +450,11 @@ class GuruSkippyasurmuni(IStrategy):
         return dataframe
 
     def confirm_trade_exit(self, pair: str, trade: Trade, order_type: str, amount: float,
-                           rate: float, time_in_force: str, sell_reason: str,
+                           rate: float, time_in_force: str, exit_reason: str,
                            current_time: datetime, **kwargs) -> bool:
         # We've got some ground to cover to get to Crypto Millionaire.  Set that bar high.
         # Minimum return.
-        if sell_reason == 'sell_signal' and trade.calc_profit_ratio(rate) < 0.055:
+        if exit_reason == 'exit_signal' and trade.calc_profit_ratio(rate) < 0.055:
                return False
         return True
     
