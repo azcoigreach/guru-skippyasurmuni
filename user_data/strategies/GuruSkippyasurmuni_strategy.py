@@ -493,7 +493,7 @@ class GuruSkippyasurmuni(IStrategy):
                 return None
 
             # If last candle had 'entry' indicator adjust stake by original stake_amount
-            if last_candle['entry'] > 0:
+            if last_candle['enter_long'] > 0:
                 filled_entries = trade.select_filled_orders(trade.entry_side)
                 count_of_entries = trade.nr_of_successful_entries
                 try:
@@ -556,7 +556,7 @@ class GuruSkippyasurmuni(IStrategy):
         if conditions:
             dataframe.loc[
                 reduce(lambda x, y: x & y, conditions),
-                'entry']=1
+                'enter_long']=1
 
         return dataframe
 
