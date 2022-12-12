@@ -391,49 +391,49 @@ class GuruSkippyasurmuni(IStrategy):
     # TODO: Its not dry code!
     # Buy Hyperoptable Parameters/Spaces.
     entry_crossed_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='entry')
+        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='buy')
     entry_crossed_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='entry')
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='buy')
     entry_crossed_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='entry')
+        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='buy')
 
     entry_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='entry')
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='buy')
     entry_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="RSI-5", space='entry')
+        god_genes_with_timeperiod, default="RSI-5", space='buy')
     entry_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="AROONOSC-5", space='entry')
+        god_genes_with_timeperiod, default="AROONOSC-5", space='buy')
 
-    entry_operator0 = CategoricalParameter(operators, default="D", space='entry')
-    entry_operator1 = CategoricalParameter(operators, default="<R", space='entry')
-    entry_operator2 = CategoricalParameter(operators, default="=R", space='entry')
+    entry_operator0 = CategoricalParameter(operators, default="D", space='buy')
+    entry_operator1 = CategoricalParameter(operators, default="<R", space='buy')
+    entry_operator2 = CategoricalParameter(operators, default="=R", space='buy')
 
-    entry_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS,  default=0.35, space='entry')
-    entry_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.30, space='entry')
-    entry_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='entry')
+    entry_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS,  default=0.35, space='buy')
+    entry_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.30, space='buy')
+    entry_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='buy')
 
     # Sell Hyperoptable Parameters/Spaces.
     exit_crossed_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='exit')
+        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='sell')
     exit_crossed_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='exit')
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='sell')
     exit_crossed_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='exit')
+        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='sell')
 
     exit_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='exit')
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='sell')
     exit_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="RSI-5", space='exit')
+        god_genes_with_timeperiod, default="RSI-5", space='sell')
     exit_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="AROONOSC-5", space='exit')
+        god_genes_with_timeperiod, default="AROONOSC-5", space='sell')
 
-    exit_operator0 = CategoricalParameter(operators, default="D", space='exit')
-    exit_operator1 = CategoricalParameter(operators, default=">R", space='exit')
-    exit_operator2 = CategoricalParameter(operators, default="=R", space='exit')
+    exit_operator0 = CategoricalParameter(operators, default="D", space='sell')
+    exit_operator1 = CategoricalParameter(operators, default=">R", space='sell')
+    exit_operator2 = CategoricalParameter(operators, default="=R", space='sell')
 
-    exit_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.65, space='exit')
-    exit_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.90, space='exit')
-    exit_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='exit')
+    exit_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.65, space='sell')
+    exit_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.90, space='sell')
+    exit_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='sell')
 
     # Skippy learns from the best
     # DCA and Position Staking with help from Perkmeister on Discord
