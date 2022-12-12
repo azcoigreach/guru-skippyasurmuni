@@ -317,35 +317,35 @@ class GuruSkippyasurmuni(IStrategy):
 
     # Skippy's BUY and SELL conditions
     # Buy hyperspace params:
-    buy_params = {
-        "buy_crossed_indicator0": "STOCHRSI-0-15",
-        "buy_crossed_indicator1": "MACDFIX-0-15",
-        "buy_crossed_indicator2": "STOCHRSI-0-55",
-        "buy_indicator0": "MACDFIX-0-15",
-        "buy_indicator1": "RSI-5",
-        "buy_indicator2": "AROONOSC-5",
-        "buy_operator0": "D",
-        "buy_operator1": "<R",
-        "buy_operator2": "=R",
-        "buy_real_num0": 0.35,
-        "buy_real_num1": 0.10,
-        "buy_real_num2": 0,
+    entry_params = {
+        "entry_crossed_indicator0": "STOCHRSI-0-15",
+        "entry_crossed_indicator1": "MACDFIX-0-15",
+        "entry_crossed_indicator2": "STOCHRSI-0-55",
+        "entry_indicator0": "MACDFIX-0-15",
+        "entry_indicator1": "RSI-5",
+        "entry_indicator2": "AROONOSC-5",
+        "entry_operator0": "D",
+        "entry_operator1": "<R",
+        "entry_operator2": "=R",
+        "entry_real_num0": 0.35,
+        "entry_real_num1": 0.10,
+        "entry_real_num2": 0,
     }
 
         # Sell hyperspace params:
-    sell_params = {
-        "sell_crossed_indicator0": "STOCHRSI-0-15",
-        "sell_crossed_indicator1": "MACDFIX-0-15",
-        "sell_crossed_indicator2": "STOCHRSI-0-15",
-        "sell_indicator0": "MACDFIX-0-15",
-        "sell_indicator1": "RSI-5",
-        "sell_indicator2": "AROONOSC-5",
-        "sell_operator0": "D",
-        "sell_operator1": ">R",
-        "sell_operator2": "=R",
-        "sell_real_num0": 0.65,
-        "sell_real_num1": 0.90,
-        "sell_real_num2": 1.0,
+    exit_params = {
+        "exit_crossed_indicator0": "STOCHRSI-0-15",
+        "exit_crossed_indicator1": "MACDFIX-0-15",
+        "exit_crossed_indicator2": "STOCHRSI-0-15",
+        "exit_indicator0": "MACDFIX-0-15",
+        "exit_indicator1": "RSI-5",
+        "exit_indicator2": "AROONOSC-5",
+        "exit_operator0": "D",
+        "exit_operator1": ">R",
+        "exit_operator2": "=R",
+        "exit_real_num0": 0.65,
+        "exit_real_num1": 0.90,
+        "exit_real_num2": 1.0,
     }
 
     # ROI table:
@@ -390,50 +390,50 @@ class GuruSkippyasurmuni(IStrategy):
 
     # TODO: Its not dry code!
     # Buy Hyperoptable Parameters/Spaces.
-    buy_crossed_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='buy')
-    buy_crossed_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='buy')
-    buy_crossed_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='buy')
+    entry_crossed_indicator0 = CategoricalParameter(
+        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='entry')
+    entry_crossed_indicator1 = CategoricalParameter(
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='entry')
+    entry_crossed_indicator2 = CategoricalParameter(
+        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='entry')
 
-    buy_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='buy')
-    buy_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="RSI-5", space='buy')
-    buy_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="AROONOSC-5", space='buy')
+    entry_indicator0 = CategoricalParameter(
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='entry')
+    entry_indicator1 = CategoricalParameter(
+        god_genes_with_timeperiod, default="RSI-5", space='entry')
+    entry_indicator2 = CategoricalParameter(
+        god_genes_with_timeperiod, default="AROONOSC-5", space='entry')
 
-    buy_operator0 = CategoricalParameter(operators, default="D", space='buy')
-    buy_operator1 = CategoricalParameter(operators, default="<R", space='buy')
-    buy_operator2 = CategoricalParameter(operators, default="=R", space='buy')
+    entry_operator0 = CategoricalParameter(operators, default="D", space='entry')
+    entry_operator1 = CategoricalParameter(operators, default="<R", space='entry')
+    entry_operator2 = CategoricalParameter(operators, default="=R", space='entry')
 
-    buy_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS,  default=0.35, space='buy')
-    buy_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.30, space='buy')
-    buy_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='buy')
+    entry_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS,  default=0.35, space='entry')
+    entry_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.30, space='entry')
+    entry_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='entry')
 
     # Sell Hyperoptable Parameters/Spaces.
-    sell_crossed_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='sell')
-    sell_crossed_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='sell')
-    sell_crossed_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='sell')
+    exit_crossed_indicator0 = CategoricalParameter(
+        god_genes_with_timeperiod, default="STOCHRSI-0-15", space='exit')
+    exit_crossed_indicator1 = CategoricalParameter(
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='exit')
+    exit_crossed_indicator2 = CategoricalParameter(
+        god_genes_with_timeperiod, default="STOCHRSI-0-55", space='exit')
 
-    sell_indicator0 = CategoricalParameter(
-        god_genes_with_timeperiod, default="MACDFIX-0-15", space='sell')
-    sell_indicator1 = CategoricalParameter(
-        god_genes_with_timeperiod, default="RSI-5", space='sell')
-    sell_indicator2 = CategoricalParameter(
-        god_genes_with_timeperiod, default="AROONOSC-5", space='sell')
+    exit_indicator0 = CategoricalParameter(
+        god_genes_with_timeperiod, default="MACDFIX-0-15", space='exit')
+    exit_indicator1 = CategoricalParameter(
+        god_genes_with_timeperiod, default="RSI-5", space='exit')
+    exit_indicator2 = CategoricalParameter(
+        god_genes_with_timeperiod, default="AROONOSC-5", space='exit')
 
-    sell_operator0 = CategoricalParameter(operators, default="D", space='sell')
-    sell_operator1 = CategoricalParameter(operators, default=">R", space='sell')
-    sell_operator2 = CategoricalParameter(operators, default="=R", space='sell')
+    exit_operator0 = CategoricalParameter(operators, default="D", space='exit')
+    exit_operator1 = CategoricalParameter(operators, default=">R", space='exit')
+    exit_operator2 = CategoricalParameter(operators, default="=R", space='exit')
 
-    sell_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.65, space='sell')
-    sell_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.90, space='sell')
-    sell_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='sell')
+    exit_real_num0 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.65, space='exit')
+    exit_real_num1 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.90, space='exit')
+    exit_real_num2 = DecimalParameter(0, 1, decimals=DECIMALS, default=0.00, space='exit')
 
     # Skippy learns from the best
     # DCA and Position Staking with help from Perkmeister on Discord
@@ -492,12 +492,12 @@ class GuruSkippyasurmuni(IStrategy):
             if current_profit > -0.065:
                 return None
 
-            # If last candle had 'buy' indicator adjust stake by original stake_amount
-            if last_candle['buy'] > 0:
+            # If last candle had 'entry' indicator adjust stake by original stake_amount
+            if last_candle['entry'] > 0:
                 filled_entries = trade.select_filled_orders(trade.entry_side)
-                count_of_buys = trade.nr_of_successful_entries
+                count_of_entries = trade.nr_of_successful_entries
                 try:
-                    stake_amount = ((count_of_buys * self.dca_multiplier) + 1) * filled_entries[0].cost 
+                    stake_amount = ((count_of_entries * self.dca_multiplier) + 1) * filled_entries[0].cost 
                     if stake_amount < min_stake: 
                         return min_stake
                     else:
@@ -511,52 +511,52 @@ class GuruSkippyasurmuni(IStrategy):
         conditions = list()
 
         # Buy Condition 0
-        buy_indicator = self.buy_indicator0.value
-        buy_crossed_indicator = self.buy_crossed_indicator0.value
-        buy_operator = self.buy_operator0.value
-        buy_real_num = self.buy_real_num0.value
+        entry_indicator = self.entry_indicator0.value
+        entry_crossed_indicator = self.entry_crossed_indicator0.value
+        entry_operator = self.entry_operator0.value
+        entry_real_num = self.entry_real_num0.value
         condition, dataframe = condition_generator(
             dataframe,
-            buy_operator,
-            buy_indicator,
-            buy_crossed_indicator,
-            buy_real_num
+            entry_operator,
+            entry_indicator,
+            entry_crossed_indicator,
+            entry_real_num
         )
         conditions.append(condition)
 
         # Buy Condition 1
-        buy_indicator = self.buy_indicator1.value
-        buy_crossed_indicator = self.buy_crossed_indicator1.value
-        buy_operator = self.buy_operator1.value
-        buy_real_num = self.buy_real_num1.value
+        entry_indicator = self.entry_indicator1.value
+        entry_crossed_indicator = self.entry_crossed_indicator1.value
+        entry_operator = self.entry_operator1.value
+        entry_real_num = self.entry_real_num1.value
 
         condition, dataframe = condition_generator(
             dataframe,
-            buy_operator,
-            buy_indicator,
-            buy_crossed_indicator,
-            buy_real_num
+            entry_operator,
+            entry_indicator,
+            entry_crossed_indicator,
+            entry_real_num
         )
         conditions.append(condition)
 
         # Buy Condition 2
-        buy_indicator = self.buy_indicator2.value
-        buy_crossed_indicator = self.buy_crossed_indicator2.value
-        buy_operator = self.buy_operator2.value
-        buy_real_num = self.buy_real_num2.value
+        entry_indicator = self.entry_indicator2.value
+        entry_crossed_indicator = self.entry_crossed_indicator2.value
+        entry_operator = self.entry_operator2.value
+        entry_real_num = self.entry_real_num2.value
         condition, dataframe = condition_generator(
             dataframe,
-            buy_operator,
-            buy_indicator,
-            buy_crossed_indicator,
-            buy_real_num
+            entry_operator,
+            entry_indicator,
+            entry_crossed_indicator,
+            entry_real_num
         )
         conditions.append(condition)
 
         if conditions:
             dataframe.loc[
                 reduce(lambda x, y: x & y, conditions),
-                'buy']=1
+                'entry']=1
 
         return dataframe
 
@@ -564,50 +564,50 @@ class GuruSkippyasurmuni(IStrategy):
         conditions = list()
         
         # Sell Condition 0
-        sell_indicator = self.sell_indicator0.value
-        sell_crossed_indicator = self.sell_crossed_indicator0.value
-        sell_operator = self.sell_operator0.value
-        sell_real_num = self.sell_real_num0.value
+        exit_indicator = self.exit_indicator0.value
+        exit_crossed_indicator = self.exit_crossed_indicator0.value
+        exit_operator = self.exit_operator0.value
+        exit_real_num = self.exit_real_num0.value
         condition, dataframe = condition_generator(
             dataframe,
-            sell_operator,
-            sell_indicator,
-            sell_crossed_indicator,
-            sell_real_num
+            exit_operator,
+            exit_indicator,
+            exit_crossed_indicator,
+            exit_real_num
         )
         conditions.append(condition)
 
         # Sell Condition 1
-        sell_indicator = self.sell_indicator1.value
-        sell_crossed_indicator = self.sell_crossed_indicator1.value
-        sell_operator = self.sell_operator1.value
-        sell_real_num = self.sell_real_num1.value
+        exit_indicator = self.exit_indicator1.value
+        exit_crossed_indicator = self.exit_crossed_indicator1.value
+        exit_operator = self.exit_operator1.value
+        exit_real_num = self.exit_real_num1.value
         condition, dataframe = condition_generator(
             dataframe,
-            sell_operator,
-            sell_indicator,
-            sell_crossed_indicator,
-            sell_real_num
+            exit_operator,
+            exit_indicator,
+            exit_crossed_indicator,
+            exit_real_num
         )
         conditions.append(condition)
 
         # Sell Condition 2
-        sell_indicator = self.sell_indicator2.value
-        sell_crossed_indicator = self.sell_crossed_indicator2.value
-        sell_operator = self.sell_operator2.value
-        sell_real_num = self.sell_real_num2.value
+        exit_indicator = self.exit_indicator2.value
+        exit_crossed_indicator = self.exit_crossed_indicator2.value
+        exit_operator = self.exit_operator2.value
+        exit_real_num = self.exit_real_num2.value
         condition, dataframe = condition_generator(
             dataframe,
-            sell_operator,
-            sell_indicator,
-            sell_crossed_indicator,
-            sell_real_num
+            exit_operator,
+            exit_indicator,
+            exit_crossed_indicator,
+            exit_real_num
         )
         conditions.append(condition)
 
         if conditions:
             dataframe.loc[
                 reduce(lambda x, y: x & y, conditions),
-                'sell']=1
+                'exit']=1
 
         return dataframe
