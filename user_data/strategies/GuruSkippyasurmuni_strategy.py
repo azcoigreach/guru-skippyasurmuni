@@ -493,11 +493,11 @@ class GuruSkippyasurmuni(IStrategy):
                 return None
 
             # If last candle had 'buy' indicator adjust stake by original stake_amount
-            if last_candle['buy'] > 0:
-                filled_buys = trade.select_filled_orders('buy')
-                count_of_buys = trade.nr_of_successful_buys
+            if last_candle['enter_long'] > 0:
+                filled_entries = trade.select_filled_orders(trade.entry_side)
+                count_of_buys = trade.nr_of_successful_entries
                 try:
-                    stake_amount = ((count_of_buys * self.dca_multiplier) + 1) * filled_buys[0].cost 
+                    stake_amount = ((count_of_buys * self.dca_multiplier) + 1) * filled_entries[0].cost 
                     if stake_amount < min_stake: 
                         return min_stake
                     else:
