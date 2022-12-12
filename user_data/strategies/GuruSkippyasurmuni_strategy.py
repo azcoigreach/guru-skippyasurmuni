@@ -493,7 +493,7 @@ class GuruSkippyasurmuni(IStrategy):
                 return None
 
             # If last candle had 'buy' indicator adjust stake by original stake_amount
-            if last_candle['entry_long'] > 0:
+            if last_candle['enter_long'] > 0:
                 filled_entries = trade.select_filled_orders(trade.entry_side)
                 count_of_buys = trade.nr_of_successful_entries
                 try:
