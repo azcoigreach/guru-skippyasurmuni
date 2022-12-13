@@ -65,7 +65,7 @@
             "method": "VolumePairList",
             "number_assets": 25,
             "sort_key": "quoteVolume",
-            "min_value": 1000000,
+            "min_value": 350000,
             "refresh_period": 3600,
             "lookback_timeframe": "1h",
             "lookback_period": 72
